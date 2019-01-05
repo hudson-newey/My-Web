@@ -1,3 +1,1 @@
-Polymeric Falcighol Derivation,
-
-c = λ/2 (1-λ/2).x
+(dynamicvar * val)/2*(1-(dynamicvar * val)/2)/((dynamicvar * dynamicvar) *2)
