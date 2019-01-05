@@ -57,7 +57,7 @@ class Encryptor
 
   end
   
-  def get_lambda(char) #super equasion is "c=λ/2(1-λ/2).x"
+  def get_lambda(char)
 	val = char.sum
 	
 	dynamicvar = $c
