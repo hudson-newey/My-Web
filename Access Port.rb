@@ -9,6 +9,7 @@ conditions.
 require 'net/http'
 require 'webrick'
 require 'webrick/https'
+require 'securerandom'
 
 class Encryptor
 	$end_file=''
@@ -139,10 +140,10 @@ w = Webbrowser.new
 e = Encryptor.new
 
 #this gets what the website should be saved as
-file_name = Math.random + ".lab"
+file_name = SecureRandom.hex + ".lab"
 
 puts "
-Hidden key identifyer?"
+Hidden key identifier?"
 print "> "
 file_to_decrypt = gets.chomp
 
@@ -151,10 +152,15 @@ Secure File Password,"
 print "> "
 $c = gets.chomp.sum.to_i
 
-#get the source from the clearnet
-source = Net::HTTP.get('pastebin.com', '/raw/' + file_to_decrypt)
+#get the encrypted source from the clearnet
+uri = URI.parse("pastebin.com/raw/" + file_to_decrypt)
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+@data = http.get(uri.request_uri)
+
+#source = Net::HTTP.get('pastebin.com', '/raw/' + file_to_decrypt) #old unencrypted connection
 encrypt_source = File.open(file_name, "w")
-encrypt_source.write(source)
+encrypt_source.write(http)
 encrypt_source.close
 
 
