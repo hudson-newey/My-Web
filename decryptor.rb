@@ -111,6 +111,10 @@ e = Encryptor.new
 puts "What is the file extension you'd like to decrypt?"
 print "> "
 file_to_decrypt = gets.chomp
+if (!File.file?(file_to_decrypt))
+	abort("Error 404, file not found!")
+end
+
 puts "
 Secure File Password,"
 print "> "
@@ -124,3 +128,4 @@ output_message = File.open(encrypted_filename, "w")
 output_message.write($end_file)
 output_message.close
 puts "Done!"
+gets
