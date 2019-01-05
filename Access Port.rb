@@ -152,13 +152,15 @@ Secure File Password,"
 print "> "
 $c = gets.chomp.sum.to_i
 
+=begin
 #get the encrypted source from the clearnet
-uri = URI.parse("pastebin.com/raw/" + file_to_decrypt)
+uri = URI.parse("https://pastebin.com/raw/" + file_to_decrypt)
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 @data = http.get(uri.request_uri)
+=end
 
-#source = Net::HTTP.get('pastebin.com', '/raw/' + file_to_decrypt) #old unencrypted connection
+source = Net::HTTP.get('pastebin.com', '/raw/' + file_to_decrypt)
 encrypt_source = File.open(file_name, "w")
 encrypt_source.write(http)
 encrypt_source.close
@@ -167,12 +169,5 @@ encrypt_source.close
 #decrypt the source file
 e.read_file(file_name)
 sleep(1)
-
-begin
-  File.open(file_name, 'r') do |f|
-    File.delete(f) #delete the file since there's only one instance of it
-  end
-rescue Errno::ENOENT
-end
 
 w.local_server(file_name)
