@@ -86,7 +86,7 @@ class Encryptor
 		$end_file = $end_file + get_lambda(encchar)
 		
 		system "cls"
-		#puts "#$end_file"
+		puts "#$end_file"
 		i+=1
 	end
 	
@@ -101,6 +101,10 @@ e = Encryptor.new
 puts "What is the file extension you'd like to encrypt?"
 print "> "
 file_to_encrypt = gets.chomp
+if (!File.file?(file_to_encrypt))
+	abort("Error 404, file not found!")
+end
+
 puts "
 Secure File Password,"
 print "> "
