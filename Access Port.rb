@@ -152,17 +152,9 @@ Secure File Password,"
 print "> "
 $c = gets.chomp.sum.to_i
 
-=begin
-#get the encrypted source from the clearnet
-uri = URI.parse("https://pastebin.com/raw/" + file_to_decrypt)
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
-@data = http.get(uri.request_uri)
-=end
-
 source = Net::HTTP.get('pastebin.com', '/raw/' + file_to_decrypt)
 encrypt_source = File.open(file_name, "w")
-encrypt_source.write(http)
+encrypt_source.write(source)
 encrypt_source.close
 
 
