@@ -69,7 +69,7 @@ class Encryptor
 		end
 	end
 	
-	$c = (dynamicvar * val)/2*(1-(dynamicvar * val)/2)/((dynamicvar * dynamicvar) *2)
+	#$c = (dynamicvar * val)/2*(1-(dynamicvar * val)/2)/((dynamicvar * dynamicvar) *2)
 	encrypted_char = encrypt(char, $c)
 	return encrypted_char
   end
@@ -86,7 +86,7 @@ class Encryptor
 		$end_file = $end_file + get_lambda(encchar)
 		
 		system "cls"
-		puts "#$end_file"
+		#puts "#$end_file"
 		i+=1
 	end
 	
@@ -101,11 +101,16 @@ e = Encryptor.new
 puts "What is the file extension you'd like to encrypt?"
 print "> "
 file_to_encrypt = gets.chomp
+puts "
+Secure File Password,"
+print "> "
+$c = gets.chomp.sum.to_i
+
 
 e.read_file(file_to_encrypt)
 
 #make the output file
-encrypted_filename = "#{file_to_encrypt}.encrypted"
+encrypted_filename = "#{file_to_encrypt}.enc"
 output_message = File.open(encrypted_filename, "w")
 output_message.write($end_file)
 output_message.close
