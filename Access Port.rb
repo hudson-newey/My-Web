@@ -13,6 +13,7 @@ require 'securerandom'
 
 class Encryptor
 	$end_file=''
+	$websiteKey = SecureRandom.hex
 
 	def cipher(rotation)
 		characters = (' '..'z').to_a
@@ -123,13 +124,13 @@ class Webbrowser
 			:SSLCertName => cert_name
 		)
 
-		server.mount_proc '/CzzveexUHcn1N.lab' do |req, res|
+		server.mount_proc '/' + $websiteKey + '.lab' do |req, res|
 			res.body = $end_file
 		end
 		
 		system "cls"
 		puts "Client Ready!"
-		system 'start chrome.exe --incognito "https://localhost:8443/CzzveexUHcn1N.lab"'
+		system 'start chrome.exe --incognito "https://localhost:8443/' + $websiteKey + '.lab"'
 		server.start
 	end
 
