@@ -28,6 +28,7 @@ func main() {
 		fmt.Scanln(&website)
 	
 		websiteedit := "http://" + website
+		websiteedit = "https://api.ready.mobi/api/v1/prism/proxy?prismid=1&testid=1qo0&i=0&device=0&url=" + websiteedit // add proxy URI
 		output := getHTML(websiteedit) // use the getHTML function to get the source of the user input website
 	
 		// write the output to a file to use later
@@ -53,7 +54,7 @@ func main() {
 
 func getHTML(w string) []byte {
 	url := w
-	fmt.Println("packet code of ", url)
+	fmt.Println("Seaching Packets...")
 	resp, err := http.Get(url)
 	// handle the error if there is one
 	if err != nil {
