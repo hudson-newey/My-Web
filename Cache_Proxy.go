@@ -1,5 +1,5 @@
 /*
-Wire Tap Copyright (C) 2018 Grathium Sofwares <grathiumsoftwears@gmail.com>
+Cache Proxy Copyright (C) 2018 Grathium Sofwares <grathiumsoftwears@gmail.com>
 	This program comes with ABSOLUTELY NO WARRANTY
 	This is a free software, and you are welcome to redistribute it under certain
 	conditions.
