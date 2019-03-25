@@ -1,5 +1,5 @@
 /*
-Cache Proxy Copyright (C) 2018 Grathium Sofwares <grathiumsoftwears@gmail.com>
+Wire Tap Copyright (C) 2018 Grathium Sofwares <grathiumsoftwears@gmail.com>
 	This program comes with ABSOLUTELY NO WARRANTY
 	This is a free software, and you are welcome to redistribute it under certain
 	conditions.
@@ -12,8 +12,10 @@ import (
 	"io/ioutil"
 	"net/http"
 	"encoding/hex"
+	"strings"
 )
 
+var replacer = strings.NewReplacer("/", "#", "?", "#")
 func main() {
 	var website string
 
@@ -35,8 +37,12 @@ func main() {
 		fmt.Println(output); fmt.Printf("\033c")
 		websiteHTML := string(output[:])
 	
+		// correct file name for use
+		str := website
+		str = replacer.Replace(str)
+
 		// create the website file
-		err := ioutil.WriteFile(website + ".html", []byte(websiteHTML), 0755)
+		err := ioutil.WriteFile(str + ".html", []byte(websiteHTML), 0755)
 		if err != nil {
 			fmt.Printf("Unable to write file: %v", err)
 		}
