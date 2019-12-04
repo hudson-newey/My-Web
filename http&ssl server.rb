@@ -1,11 +1,3 @@
-#!/usr/bin/env ruby
-=begin
-Copyright (C) 2019 Grathium Industries <GrathiumIndustries@gmail.com>
-This program comes with ABSOLUTELY NO WARRANTY
-This is a free software, and you are welcome to redistribute it under certain
-conditions.
-=end
-
 require 'net/http'
 require 'webrick'
 require 'webrick/https'
